@@ -2,6 +2,18 @@
   "name": "notion-flashcard",
   "version": "0.1.0",
   "private": true,
+  "description": "Flashcard Application using Notion API for efficient and effective learning",
+  "keywords": [],
+  "author": "M-DZN",
+  "license": "MIT",
+  "homepage": "https://github.com/m-dzn/notion-flashcard#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-dzn/notion-flashcard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/m-dzn/notion-flashcard/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
