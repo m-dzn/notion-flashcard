@@ -2,8 +2,14 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 import { APP } from "@/constants";
+import { Flashcard } from "@/components";
+import { getFlashcards } from "@/lib/notion";
 
-const Home: NextPage = () => {
+interface Props {
+  results: [any];
+}
+
+const Home: NextPage<Props> = ({ results }: Props) => {
   return (
     <div>
       <Head>
@@ -11,9 +17,22 @@ const Home: NextPage = () => {
         <meta name="description" content={APP.DESCRIPTION} />
       </Head>
 
-      <main>시작</main>
+      <main>
+        {results.map((result) => (
+          <Flashcard key={result.id} notionPage={result} />
+        ))}
+      </main>
     </div>
   );
 };
 
 export default Home;
+
+export async function getStaticProps() {
+  const { results } = await getFlashcards();
+  return {
+    props: {
+      results,
+    },
+  };
+}
