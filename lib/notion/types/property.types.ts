@@ -1,4 +1,4 @@
-import { PropertyType } from "./constant.types";
+import { PropertyType, NotionFormulaTypes } from "./constant.types";
 import {
   TitleType,
   RichTextType,
@@ -19,9 +19,11 @@ import {
   CreatedByType,
   LastEditedTimeType,
   LastEditedByType,
+  DateResponse,
+  SelectPropertyResponse,
 } from "./dto.types";
 
-/* Properties */
+/* Notion Properties */
 interface PropertySchema {
   id: string;
   name?: string;
@@ -47,3 +49,17 @@ export type CreatedTimeProperty = PropertySchema & CreatedTimeType;
 export type CreatedByProperty = PropertySchema & CreatedByType;
 export type LastEditedTimeProperty = PropertySchema & LastEditedTimeType;
 export type LastEditedByProperty = PropertySchema & LastEditedByType;
+
+/* Mapped Notion Properties */
+export interface MappedProperty<T = any> {
+  type?: PropertyType | NotionFormulaTypes;
+  value?: T;
+}
+export type MappedSelect = MappedProperty<SelectPropertyResponse | null>;
+export type MappedMultiSelect = MappedProperty<
+  Array<SelectPropertyResponse | null>
+>;
+export type MappedDate = MappedProperty<DateResponse | null>;
+export type MappedFormula = MappedProperty<
+  string | number | boolean | DateResponse | null
+>;

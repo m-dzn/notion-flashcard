@@ -1,21 +1,21 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { getNotionSelectColor, NotionSelectColors } from "@/lib/notion";
+import { getNotionSelectColor, SelectPropertyResponse } from "@/lib/notion";
 
 interface Props {
-  item?: [string | undefined, NotionSelectColors | undefined];
+  item?: SelectPropertyResponse | null;
 }
 
 export const Badge = memo(({ item }: Props) => {
-  if (!item || !item[0] || !item[1]) return null;
+  if (!item) return null;
 
-  const [label, color] = item;
+  const { name, color } = item;
   const { background, textColor } = getNotionSelectColor(color);
 
   return (
     <Wrapper background={background} textColor={textColor}>
-      {label}
+      {name}
     </Wrapper>
   );
 });

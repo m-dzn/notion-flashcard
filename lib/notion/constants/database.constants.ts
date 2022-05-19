@@ -44,3 +44,11 @@ export const notionRollupFunctions = {
   percent_unchecked: "percent_unchecked",
   show_original: "show_original",
 } as const;
+
+export const notionFormulaTypes = {
+  string: "string",
+  number: "number",
+  boolean: "boolean",
+  date: "date",
+  null: "null",
+} as const;

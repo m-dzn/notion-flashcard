@@ -30,15 +30,18 @@ interface RichTextItem {
 type RichTextText = RichTextItem & TextType;
 type RichTextMention = RichTextItem & MentionType;
 type RichTextEquation = RichTextItem & EquationType;
-type RichTextItemResponse = RichTextText | RichTextMention | RichTextEquation;
+export type RichTextItemResponse =
+  | RichTextText
+  | RichTextMention
+  | RichTextEquation;
 
-interface SelectPropertyResponse {
+export interface SelectPropertyResponse {
   id: StringRequest;
   name: StringRequest;
   color: NotionSelectColors;
 }
 
-interface DateResponse {
+export interface DateResponse {
   start: string;
   end: string | null;
   time_zone: TimeZoneRequest | null;
