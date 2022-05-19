@@ -1,3 +1,5 @@
+import { notionTextColors } from "@/lib/notion";
+
 const colors = {
   white: "#FFF",
 };
@@ -5,6 +7,7 @@ const colors = {
 export const defaultTheme = {
   colors: {
     background: colors.white,
+    font: notionTextColors.default,
   },
 };
 
