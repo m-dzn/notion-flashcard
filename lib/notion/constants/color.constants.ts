@@ -1,0 +1,47 @@
+export const notionSelectColors = {
+  default: "#E3E2E080",
+  gray: "#E3E2E0",
+  brown: "#EEE0DA",
+  orange: "#FADEC9",
+  yellow: "#FDECC8",
+  green: "#DBEDDB",
+  blue: "#D3E5EF",
+  purple: "#E8DEEE",
+  pink: "#F5E0E9",
+  red: "#FFE2DD",
+} as const;
+
+export const notionSelectTextColors = {
+  default: "#32302C",
+  gray: "#32302C",
+  brown: "#442A1E",
+  orange: "#49290E",
+  yellow: "#402C1B",
+  green: "#1C3829",
+  blue: "#183347",
+  purple: "#412454",
+  pink: "#4C2337",
+  red: "#5D1715",
+} as const;
+
+export const notionTextColors = {
+  default: "#37352F",
+  gray: "#787774",
+  brown: "#9F6B53",
+  orange: "#D9730D",
+  yellow: "#CB912F",
+  green: "#448361",
+  blue: "#337EA9",
+  purple: "#9065B0",
+  pink: "#C14C8A",
+  red: "#D44C47",
+  gray_background: "#F1F1EF",
+  brown_background: "#F4EEEE",
+  orange_background: "#FBECDD",
+  yellow_background: "#FBF3DB",
+  green_background: "#EDF3EC",
+  blue_background: "#E7F3F8",
+  purple_background: "#F4F0F7CC",
+  pink_background: "#F9EEF3CC",
+  red_background: "#FDEBEC",
+} as const;
