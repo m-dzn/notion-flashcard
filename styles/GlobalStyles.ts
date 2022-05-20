@@ -14,13 +14,13 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
-      color: ${({ theme }) => theme.colors.font};
+      color: ${({ theme }) => theme.font};
   }
 
   a {
   text-decoration: none;
 
   &, &:active, &:focus, &:hover, &:visited {
-    color: ${({ theme }) => theme.colors.font};
+    color: ${({ theme }) => theme.font};
   }
 }`;

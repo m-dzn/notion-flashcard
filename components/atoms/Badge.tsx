@@ -1,17 +1,17 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { getNotionSelectColor, SelectPropertyResponse } from "@/lib/notion";
+import { getSelectColor, SelectColor } from "@/lib/notion";
 
 interface Props {
-  item?: SelectPropertyResponse | null;
+  item?: { name: string; color: SelectColor } | null;
 }
 
 export const Badge = memo(({ item }: Props) => {
   if (!item) return null;
 
   const { name, color } = item;
-  const { background, textColor } = getNotionSelectColor(color);
+  const { background, textColor } = getSelectColor(color);
 
   return (
     <Wrapper background={background} textColor={textColor}>

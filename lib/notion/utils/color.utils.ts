@@ -1,9 +1,9 @@
-import { notionSelectColors, notionSelectTextColors } from "../constants";
-import { NotionSelectColors } from "../types";
+import { SELECT_COLOR } from "../constants";
+import { SelectColor } from "../types";
 
-export const getNotionSelectColor = (color: NotionSelectColors) => {
+export const getSelectColor = (color: SelectColor) => {
   return {
-    background: notionSelectColors[color],
-    textColor: notionSelectTextColors[color],
+    background: SELECT_COLOR[color].background,
+    textColor: SELECT_COLOR[color].text,
   };
 };

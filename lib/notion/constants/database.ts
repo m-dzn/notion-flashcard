@@ -1,4 +1,4 @@
-export const notionProperties = {
+export const PROPERTY_TYPE = {
   title: "title",
   rich_text: "rich_text",
   number: "number",
@@ -20,7 +20,15 @@ export const notionProperties = {
   last_edited_by: "last_edited_by",
 } as const;
 
-export const notionRollupFunctions = {
+export const FORMULA_TYPE = {
+  string: "string",
+  number: "number",
+  boolean: "boolean",
+  date: "date",
+  null: "null",
+} as const;
+
+export const ROLLUP_FUNCTION = {
   count: "count",
   count_values: "count_values",
   empty: "empty",
@@ -45,10 +53,8 @@ export const notionRollupFunctions = {
   show_original: "show_original",
 } as const;
 
-export const notionFormulaTypes = {
-  string: "string",
+export const ROLLUP_TYPE = {
   number: "number",
-  boolean: "boolean",
   date: "date",
-  null: "null",
+  array: "array",
 } as const;

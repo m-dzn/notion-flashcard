@@ -1,2 +1,2 @@
-export * from "./color.constants";
-export * from "./database.constants";
+export * from "./color";
+export * from "./database";
