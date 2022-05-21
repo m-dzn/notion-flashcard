@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import styled from "styled-components";
 
 import { getSelectColor, SelectColor } from "@/lib/notion";
+import { TOKEN } from "@/styles";
 
 interface Props {
   item?: { name: string; color: SelectColor } | null;
@@ -30,6 +31,6 @@ const Wrapper = styled.span<{ background?: string; textColor?: string }>`
   border-radius: 3px;
 
   color: ${({ textColor }) => textColor};
-  font-size: 12px;
+  font-size: ${TOKEN.FONT_SIZE.TINY}px;
   line-height: 120%;
 `;
