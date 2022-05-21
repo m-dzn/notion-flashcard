@@ -33,4 +33,5 @@ const Wrapper = styled.span<{ background?: string; textColor?: string }>`
   color: ${({ textColor }) => textColor};
   font-size: ${TOKEN.FONT_SIZE.TINY}px;
   line-height: 120%;
+  white-space: nowrap;
 `;

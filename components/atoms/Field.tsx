@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { TEXT_COLOR } from "@/lib/notion";
-import { TOKEN } from "@/styles";
+import { customScrollbar, TOKEN } from "@/styles";
 
 const ICON_SIZE = 16;
 
@@ -29,6 +29,7 @@ export const Field = ({ icon, label, children }: Props) => {
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: nowrap;
 `;
 
 const Label = styled.label`
@@ -38,6 +39,7 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 
   color: ${TEXT_COLOR.default}A6;
   font-size: ${TOKEN.FONT_SIZE.TINY}px;
@@ -47,7 +49,9 @@ const Body = styled.div`
   height: 28px;
   padding: 0 8px;
 
-  flex-grow: 1;
   display: flex;
   align-items: center;
+  overflow: hidden;
+
+  ${customScrollbar("x")}
 `;
