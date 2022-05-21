@@ -2,7 +2,7 @@ const getAssetPath = (path1: string) => (path2: string) => `/${path1}/${path2}`;
 const iconPath = getAssetPath("icons");
 const imagePath = getAssetPath("images");
 
-export const ICON: Record<string, any> = {
+export const ICON = {
   rich_text: iconPath("rich-text.svg"),
   number: iconPath("number.svg"),
   select: iconPath("select.svg"),
@@ -25,11 +25,14 @@ export const ICON: Record<string, any> = {
   get last_edited_by() {
     return this.created_by;
   },
-};
+} as const;
 
-export const IMAGE: Record<string, any> = {
+export const IMAGE = {
+  placeholder: {
+    avatar: imagePath("default-avatar.svg"),
+  },
   checkbox: {
     unchecked: imagePath("checkbox-unchecked.svg"),
     checked: imagePath("checkbox-checked.svg"),
   },
-};
+} as const;
