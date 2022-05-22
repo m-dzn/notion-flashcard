@@ -1,5 +1,32 @@
 import { css } from "styled-components";
 
+import { TOKEN } from "@/styles/tokens";
+
+export function ellipsis(
+  lines: number = 1,
+  lineHeight = TOKEN.LINE_HEIGHT.DEFAULT
+) {
+  const commonStyle = css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `;
+
+  return lines === 1
+    ? css`
+        ${commonStyle}
+        white-space: nowrap;
+      `
+    : css`
+        ${commonStyle}
+
+        display: -webkit-box;
+        -webkit-line-clamp: ${lines};
+        -webkit-box-orient: vertical;
+        max-height: ${lineHeight * lines}em;
+        word-wrap: break-word;
+      `;
+}
+
 export function customScrollbar(direction?: "x" | "y" | "xy") {
   let scrollDirection = css`
     overflow-x: hidden;

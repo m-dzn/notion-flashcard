@@ -9,7 +9,12 @@ const FONT_SIZE = {
   TINY: 12,
 } as const;
 
+const LINE_HEIGHT = {
+  DEFAULT: 1.5,
+};
+
 export const TOKEN = {
   FONT_FAMILY,
+  LINE_HEIGHT,
   FONT_SIZE,
 };
