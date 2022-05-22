@@ -1,4 +1,4 @@
-import { PROPERTY_TYPE as type, ROLLUP_TYPE } from "../constants";
+import { PROPERTY_TYPE as type } from "../constants";
 import {
   TitleProperty,
   RichTextProperty,
@@ -19,13 +19,7 @@ import {
   CreatedByProperty,
   LastEditedTimeProperty,
   LastEditedByProperty,
-  NumberRollupResponse,
-  ArrayRollupResponse,
-  DateRollupResponse,
   TitleObject,
-  RichTextObject,
-  PeopleObject,
-  RelationArrayObject,
   PropertyType,
   RollupType,
 } from "../types";
@@ -94,26 +88,5 @@ export const isLastEditedByProperty = (
 ): prop is LastEditedByProperty => isTypeProperty(prop, type.last_edited_by);
 
 /* Rollup Type Guards */
-export const isNumberRollup = (rollup: any): rollup is NumberRollupResponse =>
-  isTypeProperty(rollup, ROLLUP_TYPE.number);
-
-export const isDateRollup = (rollup: any): rollup is DateRollupResponse =>
-  isTypeProperty(rollup, ROLLUP_TYPE.date);
-
-export const isArrayRollup = (rollup: any): rollup is ArrayRollupResponse =>
-  isTypeProperty(rollup, ROLLUP_TYPE.array);
-
-export const isTitleArrayRollup = (array: any): array is Array<TitleObject> =>
-  isTypeProperty(array[0], type.title);
-
-export const isRichTextArrayRollup = (
-  array: any
-): array is Array<RichTextObject> => isTypeProperty(array[0], type.rich_text);
-
-export const isPeopleArrayRollup = (array: any): array is Array<PeopleObject> =>
-  isTypeProperty(array[0], type.people);
-
-export const isRelationArrayRollup = (
-  array: any
-): array is Array<RelationArrayObject> =>
-  isTypeProperty(array[0], type.relation);
+export const isTitleRollup = (array: any): array is Array<TitleObject> =>
+  isTitleProperty(array[0]);

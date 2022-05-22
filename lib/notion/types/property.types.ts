@@ -21,6 +21,7 @@ import {
   LastEditedByObject,
   DateResponse,
   SelectPropertyResponse,
+  PartialUserResponse,
 } from "./dto.types";
 
 /* Notion Properties */
@@ -52,3 +53,27 @@ export type LastEditedByProperty = PropertySchema & LastEditedByObject;
 
 /* Mapped Notion Properties */
 export type MappedRollup = string[] | undefined;
+
+/* */
+export type RenderFunction<T> = ({
+  data,
+  id,
+}: {
+  data: T;
+  id: string;
+}) => JSX.Element;
+
+export interface RenderTable {
+  title: RenderFunction<string>;
+  rich_text: RenderFunction<string>;
+  select: RenderFunction<SelectPropertyResponse | null>;
+  multi_select: RenderFunction<Array<SelectPropertyResponse | null>>;
+  date: RenderFunction<DateResponse>;
+  people: RenderFunction<PartialUserResponse[]>;
+  files: RenderFunction<FilesObject["files"]>;
+  checkbox: RenderFunction<CheckboxObject["checkbox"]>;
+  url: RenderFunction<UrlObject["url"]>;
+  email: RenderFunction<EmailObject["email"]>;
+  phone_number: RenderFunction<PhoneNumberObject["phone_number"]>;
+  rollup: RenderFunction<MappedRollup>;
+}

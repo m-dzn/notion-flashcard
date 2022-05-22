@@ -59,7 +59,7 @@ interface SimpleUserResponse extends UserIdResponse {
 type PersonResponse = SimpleUserResponse & PersonObject;
 type BotResponse = SimpleUserResponse & BotObject;
 type UserResponse = PersonResponse | BotResponse;
-type PartialUserResponse = UserIdResponse | UserResponse;
+export type PartialUserResponse = UserResponse;
 
 // File Responses
 interface InternalFileResponse extends FileObject {
