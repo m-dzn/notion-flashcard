@@ -7,7 +7,7 @@ import {
   MultiSelectProperty,
   DateProperty,
   PeopleProperty,
-  FileProperty,
+  FilesProperty,
   CheckboxProperty,
   UrlProperty,
   EmailProperty,
@@ -54,7 +54,7 @@ export const isDateProperty = (prop: any): prop is DateProperty =>
 export const isPeopleProperty = (prop: any): prop is PeopleProperty =>
   isTypeProperty(prop, type.people);
 
-export const isFilesProperty = (prop: any): prop is FileProperty =>
+export const isFilesProperty = (prop: any): prop is FilesProperty =>
   isTypeProperty(prop, type.files);
 
 export const isCheckboxProperty = (prop: any): prop is CheckboxProperty =>

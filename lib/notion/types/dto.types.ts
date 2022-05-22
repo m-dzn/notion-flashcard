@@ -256,9 +256,7 @@ export interface RelationArrayObject {
 }
 interface ArrayRollupObject {
   type: "array";
-  array: Array<
-    TitleObject | RichTextObject | PeopleObject | RelationArrayObject
-  >;
+  array: Array<any>;
 }
 export interface RollupObject {
   type: "rollup";

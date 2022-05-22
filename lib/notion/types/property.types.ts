@@ -37,7 +37,7 @@ export type SelectProperty = PropertySchema & SelectObject;
 export type MultiSelectProperty = PropertySchema & MultiSelectObject;
 export type DateProperty = PropertySchema & DateObject;
 export type PeopleProperty = PropertySchema & PeopleObject;
-export type FileProperty = PropertySchema & FilesObject;
+export type FilesProperty = PropertySchema & FilesObject;
 export type CheckboxProperty = PropertySchema & CheckboxObject;
 export type UrlProperty = PropertySchema & UrlObject;
 export type EmailProperty = PropertySchema & EmailObject;
@@ -49,3 +49,6 @@ export type CreatedTimeProperty = PropertySchema & CreatedTimeObject;
 export type CreatedByProperty = PropertySchema & CreatedByObject;
 export type LastEditedTimeProperty = PropertySchema & LastEditedTimeObject;
 export type LastEditedByProperty = PropertySchema & LastEditedByObject;
+
+/* Mapped Notion Properties */
+export type MappedRollup = string[] | undefined;
