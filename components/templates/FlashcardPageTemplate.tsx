@@ -23,8 +23,8 @@ export const FlashcardPageTemplate = ({ title, children }: Props) => {
 
 const pagePaddingH = 32;
 const titleHeight = 120;
-const cardGap = 24;
-const cardMinWidth = 260;
+const cardGap = 16;
+const cardMinWidth = 280;
 
 const Template = styled.div`
   padding: 0 ${pagePaddingH}px;
@@ -34,6 +34,8 @@ const Title = styled.h1`
   margin: 0;
   height: ${titleHeight}px;
   line-height: ${titleHeight}px;
+
+  white-space: nowrap;
 `;
 
 const Main = styled.main`
