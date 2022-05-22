@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
 
-import { TOKEN } from "./tokens";
+import { TOKEN } from "@/styles/tokens";
 
 export const GlobalStyles = createGlobalStyle`
   ${normalize}
@@ -15,9 +15,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: ${TOKEN.FONT_FAMILY};
     margin: 0;
+
     color: ${({ theme }) => theme.font};
+    font-family: ${TOKEN.FONT_FAMILY};
+    line-height: ${TOKEN.LINE_HEIGHT.DEFAULT};
   }
 
   a {
