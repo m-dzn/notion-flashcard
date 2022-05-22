@@ -1,20 +1,26 @@
 import type { NextPage } from "next";
 
-import { Seo } from "@/components";
+import { FlashcardPageTemplate, Flashcard, Seo } from "@/components";
 import { getCardList } from "@/lib/notion";
 
 interface Props {
   cardList: any[];
 }
 
+const cardProperties = {
+  title: "이름",
+  header: ["Eng"],
+  body: ["분류", "중요도", "학습 상태", "빈출", "학습일"],
+};
+
 const Home: NextPage<Props> = ({ cardList }: Props) => {
   return (
-    <div>
+    <FlashcardPageTemplate>
       <Seo />
       {cardList.map((card) => (
-        <div key={card.id}>{card.properties.이름.title[0].plain_text}</div>
+        <Flashcard key={card.id} card={card} properties={cardProperties} />
       ))}
-    </div>
+    </FlashcardPageTemplate>
   );
 };
 
