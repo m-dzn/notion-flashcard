@@ -29,6 +29,7 @@ const PAGE_PADDING_H = 32;
 const PAGE_PADDING_BOTTOM = 64;
 
 const TITLE_HEIGHT = 120;
+const HEADER_ROW_GAP = 16;
 const HEADER_MARGIN_BOTTOM = 40;
 
 const MAIN_CHILDREN_GAP = 40;
@@ -40,6 +41,9 @@ const Template = styled.div`
 
 const Header = styled.header`
   margin-bottom: ${HEADER_MARGIN_BOTTOM}px;
+  display: flex;
+  flex-direction: column;
+  row-gap: ${HEADER_ROW_GAP}px;
 `;
 
 const Title = styled.h1`

@@ -17,7 +17,9 @@ export const FilterMenu = ({ title, filterMenu, getFilter }: Props) => {
 
   return (
     <Container>
-      <Headline>{title || "Filter"}</Headline>
+      <Headline>
+        <h5>{title || "Filter"}</h5>
+      </Headline>
       <Body>
         <Badge
           item={{ name: "All", color: "default" }}
@@ -35,25 +37,38 @@ export const FilterMenu = ({ title, filterMenu, getFilter }: Props) => {
   );
 };
 
-const HEIGHT = 32;
-const HEADLINE_GAP = 32;
+const HEIGHT = 24;
+const HEADLINE_GAP = 16;
 
-const BUTTON_GAP = 16;
+const COLUMN_GAP = 16;
+const ROW_GAP = 4;
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: ${HEADLINE_GAP}px;
 `;
 
-const Headline = styled.h5`
-  margin: 0;
+const Headline = styled.div`
+  width: 64px;
+  flex-shrink: 0;
+
+  h5 {
+    margin: 0;
+    line-height: ${HEIGHT}px;
+  }
 `;
 
 const Body = styled.div`
-  height: ${HEIGHT}px;
+  width: 100%;
+  min-height: ${HEIGHT}px;
 
   display: flex;
-  align-items: center;
-  gap: ${BUTTON_GAP}px;
+  flex-wrap: wrap;
+  column-gap: ${COLUMN_GAP}px;
+  row-gap: ${ROW_GAP}px;
+
+  & > * {
+    margin: ${(HEIGHT - 18) / 2}px 0;
+  }
 `;
