@@ -1,7 +1,7 @@
 import { atom, selector } from "recoil";
 import produce from "immer";
 
-import { FilterSelector, FilterState } from "@/types";
+import { FilterSelector, FilterState } from "@/lib";
 
 export const filterState = atom<FilterState>({
   key: "filterState",

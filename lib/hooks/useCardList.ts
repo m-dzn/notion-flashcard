@@ -3,9 +3,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 
 import { URL } from "@/constants";
+import { FilterState } from "@/lib";
 import { CardListQueryResult } from "@/lib/notion";
 import { cardListState, filterSelector, filterState } from "@/lib/recoil";
-import { FilterState } from "@/types";
 
 interface Props {
   defaultFilter: FilterState;

@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 
 import { Badge } from "@/components/atoms";
-import { filterSelector } from "@/lib";
+import { FilterButton, filterSelector } from "@/lib";
 import { PropertyFilter } from "@/lib/notion";
-import { FilterButton } from "@/types";
 
 interface Props {
   title?: string;

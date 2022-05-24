@@ -1,6 +1,6 @@
 import { GetDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 
-import { FilterButton } from "@/types";
+import { FilterButton } from "@/lib";
 
 import { PROPERTY_TYPE } from "../constants";
 

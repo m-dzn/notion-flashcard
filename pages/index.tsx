@@ -8,7 +8,7 @@ import {
   FilterMenu,
 } from "@/components";
 import { NOTION } from "@/constants";
-import { useCardList } from "@/lib/hooks";
+import { useCardList } from "@/lib";
 import { getCardListDBSchema, getRetrievePropValues } from "@/lib/notion";
 
 const cardProperties = {
