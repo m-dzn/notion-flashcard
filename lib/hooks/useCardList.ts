@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { URL } from "@/constants";
 import { FilterState } from "@/lib";
+
 import { CardListQueryResult } from "@/lib/notion";
 import { cardListState, filterSelector, filterState } from "@/lib/recoil";
 
@@ -17,16 +18,23 @@ export const useCardList = ({ defaultFilter }: Props) => {
   const setDefaultFilter = useSetRecoilState(filterState);
   const filter = useRecoilValue(filterSelector);
 
+  const refetchCardList = async () => {
+    const { data } = await axios.post<CardListQueryResult>(URL.API.CARD_LIST, {
+      filter,
+    });
+
+    const { cardList } = data;
+
+    setCardList(cardList);
+  };
+
   useEffect(() => {
     if (!filter) {
       setDefaultFilter(defaultFilter);
     } else {
-      axios
-        .post<CardListQueryResult>(URL.API.CARD_LIST, { filter })
-        .then(({ data }) => data.cardList)
-        .then(setCardList);
+      refetchCardList();
     }
   }, [filter]);
 
-  return { cardList };
+  return { cardList, refetchCardList };
 };

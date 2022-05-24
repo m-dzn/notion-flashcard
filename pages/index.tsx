@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import dayjs from "dayjs";
+import axios from "axios";
 
 import {
   FlashcardPageTemplate,
@@ -7,25 +7,20 @@ import {
   Seo,
   FilterMenu,
 } from "@/components";
-import { NOTION } from "@/constants";
-import { useCardList } from "@/lib";
+import { NOTION, URL } from "@/constants";
+import { getToday, useCardList } from "@/lib";
 import { getCardListDBSchema, getRetrievePropValues } from "@/lib/notion";
 
 const cardProperties = {
   title: "이름",
   header: ["Eng"],
-  body: ["그룹", "분류", "중요도", "학습 상태", "학습일", "질문"],
+  body: ["그룹", "분류", "중요도", "학습 상태", "학습일", "빈출", "질문"],
 };
 
 const defaultFilter = {
   학습일: {
     date: {
-      before: dayjs(new Date()).format("YYYY-MM-DD").toString(),
-    },
-  },
-  분류: {
-    multi_select: {
-      contains: "Node.js",
+      before: getToday(),
     },
   },
 };
@@ -39,7 +34,17 @@ const Home: NextPage<Props> = ({
   categoryFilterButtons,
   importanceFilterButtons,
 }: Props) => {
-  const { cardList } = useCardList({ defaultFilter });
+  const { cardList, refetchCardList } = useCardList({ defaultFilter });
+
+  const onClick = async (cardId: string) => {
+    if (confirm("충분히 학습하셨나요?")) {
+      await axios.patch(`${URL.API.CARD.COMPLETE}/${cardId}`, {
+        propName: "학습일",
+      });
+
+      refetchCardList();
+    }
+  };
 
   return (
     <FlashcardPageTemplate
@@ -70,7 +75,12 @@ const Home: NextPage<Props> = ({
     >
       <Seo />
       {cardList.map((card) => (
-        <Flashcard key={card.id} card={card} properties={cardProperties} />
+        <Flashcard
+          key={card.id}
+          card={card}
+          properties={cardProperties}
+          onClickComplete={onClick}
+        />
       ))}
     </FlashcardPageTemplate>
   );

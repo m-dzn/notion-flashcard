@@ -12,17 +12,19 @@ import {
 } from "@/components/atoms";
 import { ICON } from "@/constants";
 import { addHttp } from "@/lib";
-import { mapProperty, mapPropToJSX, RenderTable } from "@/lib/notion";
+import { mapPropToJSX, RenderTable } from "@/lib/notion";
 import { customScrollbar, ellipsis, TOKEN } from "@/styles";
 
 interface Props {
   card: any;
   properties: { title: string; header?: string[]; body?: string[] };
+  onClickComplete?: (cardId: string) => void;
 }
 
 export const Flashcard = ({
-  card: { url, properties: props },
+  card: { id, url, properties: props },
   properties: { title, header, body },
+  onClickComplete,
 }: Props) => {
   return (
     <Card>
@@ -32,7 +34,11 @@ export const Flashcard = ({
         </a>
         {header?.map((propName) => mapPropToJSX(props[propName], renderTable))}
         <RightTopMenu>
-          {mapProperty(props.빈출).data && <div>⭐</div>}
+          <CompleteButton
+            onClick={() => onClickComplete && onClickComplete(id)}
+          >
+            ✅
+          </CompleteButton>
         </RightTopMenu>
       </Header>
       <Body>
@@ -97,8 +103,8 @@ const renderTable: RenderTable = {
   rollup: ({ data, id }) => <Rollup key={id} prop={data} />,
 };
 
-const HEADER_HEIGHT = 136;
-const HEADER_PADDING_V = 24;
+const HEADER_HEIGHT = 144;
+const HEADER_PADDING_V = 32;
 const HEADER_PADDING_H = 32;
 const HEADER_ROW_GAP = 8;
 
@@ -164,7 +170,7 @@ const RightTopMenu = styled.div`
 
   position: absolute;
   top: ${HEADER_PADDING_V - HEADER_MENU_SIZE}px;
-  right: ${HEADER_PADDING_V - HEADER_MENU_SIZE}px;
+  right: ${HEADER_PADDING_H - HEADER_MENU_SIZE}px;
 
   display: flex;
   overflow: hidden;
@@ -200,4 +206,14 @@ const Date = styled.div`
 const People = styled.div`
   display: flex;
   gap: 8px;
+`;
+
+const CompleteButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  cursor: pointer;
 `;
