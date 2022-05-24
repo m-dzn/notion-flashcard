@@ -5,17 +5,18 @@ import { getSelectColor, SelectColor } from "@/lib/notion";
 import { TOKEN } from "@/styles";
 
 interface Props {
-  item?: { name: string; color: SelectColor } | null;
+  item?: { name?: string; color?: SelectColor } | null;
+  onClick?: React.MouseEventHandler<HTMLSpanElement>;
 }
 
-export const Badge = memo(({ item }: Props) => {
-  if (!item) return null;
+export const Badge = memo(({ item, onClick }: Props) => {
+  if (!item?.color) return null;
 
   const { name, color } = item;
   const { background, textColor } = getSelectColor(color);
 
   return (
-    <Wrapper background={background} textColor={textColor}>
+    <Wrapper background={background} textColor={textColor} onClick={onClick}>
       {name}
     </Wrapper>
   );
@@ -34,4 +35,6 @@ const Wrapper = styled.span<{ background?: string; textColor?: string }>`
   font-size: ${TOKEN.FONT_SIZE.TINY}px;
   line-height: 120%;
   white-space: nowrap;
+
+  ${({ onClick }) => !!onClick && "cursor: pointer;"}
 `;

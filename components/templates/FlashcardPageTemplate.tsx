@@ -6,40 +6,52 @@ import { APP } from "@/constants";
 
 interface Props {
   title?: string;
+  header: JSX.Element[];
   children: React.ReactNode;
 }
 
-export const FlashcardPageTemplate = ({ title, children }: Props) => {
+export const FlashcardPageTemplate = ({ title, header, children }: Props) => {
   return (
     <>
       <Seo title={title} />
       <Template>
-        <Title>{title || APP.NAME}</Title>
+        <Header>
+          <Title>{title || APP.NAME}</Title>
+          {header}
+        </Header>
         <Main>{children}</Main>
       </Template>
     </>
   );
 };
 
-const pagePaddingH = 32;
-const titleHeight = 120;
-const cardGap = 16;
-const cardMinWidth = 280;
+const PAGE_PADDING_H = 32;
+const PAGE_PADDING_BOTTOM = 64;
+
+const HEADER_MARGIN_BOTTOM = 24;
+const TITLE_HEIGHT = 120;
+const CARD_GAP = 16;
+const CARD_MIN_WIDTH = 280;
 
 const Template = styled.div`
-  padding: 0 ${pagePaddingH}px;
+  padding: 0 ${PAGE_PADDING_H}px;
+  padding-bottom: ${PAGE_PADDING_BOTTOM}px;
+`;
+
+const Header = styled.header`
+  margin-bottom: ${HEADER_MARGIN_BOTTOM}px;
 `;
 
 const Title = styled.h1`
   margin: 0;
-  height: ${titleHeight}px;
-  line-height: ${titleHeight}px;
+  height: ${TITLE_HEIGHT}px;
+  line-height: ${TITLE_HEIGHT}px;
 
   white-space: nowrap;
 `;
 
 const Main = styled.main`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${cardMinWidth}px, 1fr));
-  gap: ${cardGap}px;
+  grid-template-columns: repeat(auto-fill, minmax(${CARD_MIN_WIDTH}px, 1fr));
+  gap: ${CARD_GAP}px;
 `;

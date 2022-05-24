@@ -3,10 +3,10 @@ import { EmojiRequest } from "./emoji.types";
 import { TimeZoneRequest } from "./timezone.types";
 
 /* Common */
-type EmptyObject = Record<string, never>;
-type IdRequest = string | string;
-type StringRequest = string;
-type TextRequest = string;
+export type EmptyObject = Record<string, never>;
+export type IdRequest = string | string;
+export type StringRequest = string;
+export type TextRequest = string;
 
 /* Responses */
 // Global Responses
