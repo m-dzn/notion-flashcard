@@ -28,10 +28,10 @@ export const FlashcardPageTemplate = ({ title, header, children }: Props) => {
 const PAGE_PADDING_H = 32;
 const PAGE_PADDING_BOTTOM = 64;
 
-const HEADER_MARGIN_BOTTOM = 24;
 const TITLE_HEIGHT = 120;
-const CARD_GAP = 16;
-const CARD_MIN_WIDTH = 280;
+const HEADER_MARGIN_BOTTOM = 40;
+
+const MAIN_CHILDREN_GAP = 40;
 
 const Template = styled.div`
   padding: 0 ${PAGE_PADDING_H}px;
@@ -50,8 +50,8 @@ const Title = styled.h1`
   white-space: nowrap;
 `;
 
-const Main = styled.main`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${CARD_MIN_WIDTH}px, 1fr));
-  gap: ${CARD_GAP}px;
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${MAIN_CHILDREN_GAP}px;
 `;

@@ -1,11 +1,13 @@
 import type { NextPage } from "next";
 import axios from "axios";
+import styled from "styled-components";
 
 import {
   FlashcardPageTemplate,
   Flashcard,
   Seo,
   FilterMenu,
+  ArrowTextButton,
 } from "@/components";
 import { NOTION, URL } from "@/constants";
 import { getToday, useCardList } from "@/lib";
@@ -34,7 +36,9 @@ const Home: NextPage<Props> = ({
   categoryFilterButtons,
   importanceFilterButtons,
 }: Props) => {
-  const { cardList, refetchCardList } = useCardList({ defaultFilter });
+  const { cardList, hasMore, refetchCardList, getNextCardList } = useCardList({
+    defaultFilter,
+  });
 
   const onClick = async (cardId: string) => {
     if (confirm("충분히 학습하셨나요?")) {
@@ -74,14 +78,23 @@ const Home: NextPage<Props> = ({
       ]}
     >
       <Seo />
-      {cardList.map((card) => (
-        <Flashcard
-          key={card.id}
-          card={card}
-          properties={cardProperties}
-          onClickComplete={onClick}
-        />
-      ))}
+      <CardContainer>
+        {cardList.map((card) => (
+          <Flashcard
+            key={card.id}
+            card={card}
+            properties={cardProperties}
+            onClickComplete={onClick}
+          />
+        ))}
+      </CardContainer>
+      {hasMore && (
+        <BottomMenu>
+          <ArrowTextButton onClick={getNextCardList}>
+            다음 카드 목록
+          </ArrowTextButton>
+        </BottomMenu>
+      )}
     </FlashcardPageTemplate>
   );
 };
@@ -104,3 +117,18 @@ export const getServerSideProps = async () => {
     },
   };
 };
+
+const CARD_GAP = 16;
+const CARD_MIN_WIDTH = 280;
+
+const CardContainer = styled.main`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(${CARD_MIN_WIDTH}px, 1fr));
+  gap: ${CARD_GAP}px;
+`;
+
+const BottomMenu = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

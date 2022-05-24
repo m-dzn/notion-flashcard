@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import axios from "axios";
 
@@ -14,18 +14,37 @@ interface Props {
 
 export const useCardList = ({ defaultFilter }: Props) => {
   const [cardList, setCardList] = useRecoilState(cardListState);
+  const [nextCursor, setNextCursor] = useState<string | null>("");
+  const [hasMore, setHasMore] = useState(false);
 
   const setDefaultFilter = useSetRecoilState(filterState);
   const filter = useRecoilValue(filterSelector);
 
-  const refetchCardList = async () => {
+  const fetch = async (cursor?: string | null) => {
     const { data } = await axios.post<CardListQueryResult>(URL.API.CARD_LIST, {
+      startCursor: cursor,
       filter,
     });
 
-    const { cardList } = data;
+    const { cardList, next_cursor, has_more } = data;
+    setHasMore(has_more);
+    setNextCursor(next_cursor);
 
+    console.log("문제", cursor, next_cursor);
+
+    return { cardList };
+  };
+
+  const refetchCardList = async () => {
+    const { cardList } = await fetch();
     setCardList(cardList);
+  };
+
+  const getNextCardList = async () => {
+    if (hasMore) {
+      const { cardList } = await fetch(nextCursor);
+      setCardList((prev) => [...prev, ...cardList]);
+    }
   };
 
   useEffect(() => {
@@ -36,5 +55,5 @@ export const useCardList = ({ defaultFilter }: Props) => {
     }
   }, [filter]);
 
-  return { cardList, refetchCardList };
+  return { cardList, hasMore, refetchCardList, getNextCardList };
 };

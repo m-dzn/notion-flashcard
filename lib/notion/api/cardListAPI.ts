@@ -6,6 +6,7 @@ import {
 import { notionClient } from "./client";
 
 export interface QueryOptions {
+  startCursor?: string;
   pageSize?: number;
   filter?: QueryDatabaseParameters["filter"];
   priorities?: QueryDatabaseParameters["sorts"];
@@ -19,11 +20,12 @@ export interface CardListQueryResult {
 
 export async function getCardList(
   databaseId: string,
-  { pageSize = 10, filter, priorities }: QueryOptions = {}
+  { startCursor, pageSize = 10, filter, priorities }: QueryOptions = {}
 ): Promise<CardListQueryResult> {
   const { results, next_cursor, has_more } = await notionClient.databases.query(
     {
       database_id: databaseId,
+      start_cursor: startCursor,
       page_size: pageSize,
       filter,
       sorts: priorities,
